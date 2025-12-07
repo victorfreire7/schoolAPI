@@ -1,5 +1,7 @@
 import express from 'express';
-import homeRoute from './src/routes/home.js'
+import homeRoute from './src/routes/home.js';
+import './src/database'
+
 
 class App {
   constructor() {
