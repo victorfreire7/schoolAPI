@@ -1,8 +1,7 @@
-import { Router } from "express";
+import { Router } from 'express';
+import controller from '../controllers/Home'
 const router = new Router();
 
-router.get('/', (req, res) => {
-  res.send('oi')
-})
+router.get('/', controller.index)
 
 export default router;
