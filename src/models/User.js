@@ -46,4 +46,8 @@ export default class User extends Model {
 
     return this;
   }
+
+  passwordIsValid(password) { // retorno como PROMISSE um verificador de senha, para ser utilizado no controller do token (login)
+    return bcryptjs.compare(password,  this.password_hash);
+  }
 }
