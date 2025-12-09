@@ -9,21 +9,16 @@ export default class User extends Model {
         defaultValue: '',
         validate: {
           len: {
-            args: [3, 255],
-            msg: 'Campo nome deve ter entre 3 e 255 caracteres',
+            args: [3, 255]
           },
         },
       },
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
-        unique: {
-          msg: 'Email já existe',
-        },
+        unique: true,
         validate: {
-          isEmail: {
-            msg: 'Email inválido',
-          },
+          isEmail: true,
         },
       },
       password_hash: {
@@ -35,8 +30,7 @@ export default class User extends Model {
         defaultValue: '',
         validate: {
           len: {
-            args: [6, 50],
-            msg: 'A senha precisa ter entre 6 e 50 caracteres',
+            args: [6, 50]
           },
         },
       },
@@ -51,9 +45,5 @@ export default class User extends Model {
     });
 
     return this;
-  }
-
-  passwordIsValid(password) {
-    return bcryptjs.compare(password, this.password_hash);
   }
 }
