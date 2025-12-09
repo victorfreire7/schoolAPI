@@ -1,54 +1,23 @@
 import User from '../models/User';
 
 class Controller {
-  async index(req, res) {
-    try {
-      await User.findAll()
-      .then((users) => {
-        return res.json(users)
-      })
-    } catch {
-      return res.json(null);
-    }
-  }
-
   async store(req, res) {
     try {
       await User.create(req.body)
       .then((user) => {
-        return res.json(user)
+        const { id, nome, email } = user;
+        return res.json({ id, nome, email })
       })
-    } catch (e) {
-      return res.status(400).json(e.errors);
-    }
-  }
-
-  async show(req, res) {
-    try {
-      if(!req.params.id){
-        return res.status(400).json({
-          errors: ['missing id']
-        });
-      }
-
-      await User.findByPk(req.params.id)
-      .then((user) => {
-        if(!user){
-            return res.status(400).json({
-              errors: ['user not found']
-            });
-        } else {
-          res.json(user);
-        }
-      })
-    } catch (e) {
-      return res.status(400).json(e.errors);
+    } catch {
+      return res.status(400).json({
+        errors: ['email must be unique']
+      });
     }
   }
 
   async delete(req, res) {
     try {
-      await User.findByPk(req.params.id)
+      await User.findByPk(req.user_id) // aonde "user_id" é o dado retornado pleo JWT.
       .then((user) => {
         if(!user){
             return res.status(400).json({
@@ -68,13 +37,7 @@ class Controller {
 
   async update(req, res) {
     try {
-      if(!req.params.id){
-        return res.status(400).json({
-          errors: ['missing id']
-        });
-      }
-
-      await User.findByPk(req.params.id)
+      await User.findByPk(req.user_id) // aonde "user_id" é o dado retornado pleo JWT.
       .then((user) => {
         if(!user){
             return res.status(400).json({
