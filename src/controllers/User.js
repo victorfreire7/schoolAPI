@@ -10,13 +10,14 @@ class Controller {
   }
 
   async store(req, res) {
-    const novoUser = await User.create({
-      nome: 'victor hugo',
-      email: 'email@email.com',
-      password: '123456'
-    });
-
-    res.json(novoUser)
+    try {
+      await User.create(req.body)
+      .then((result) => {
+        res.json(result)
+      })
+    } catch (e) {
+      res.status(400).json(e.errors)
+    }
   }
 }
 
