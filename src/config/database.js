@@ -13,9 +13,5 @@ module.exports = {
     underscoredAll: true,
     'createdAt': 'created_at', // para contrariar o erro comum no underscored do sequelize
     'updatedAt': 'updated_at'
-  },
-  dialectOption: {
-    timezone: 'America/Sao_Paulo'
-  },
-  timezone: 'America/Sao_Paulo'
+  }
 }
