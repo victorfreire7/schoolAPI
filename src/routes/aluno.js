@@ -1,11 +1,12 @@
 import { Router } from "express";
 import controller from '../controllers/Aluno';
+import loginRequired from '../middlewares/loginRequired';
 const router = new Router();
 
 router.get('/', controller.index);
-router.post('/', controller.store);
-router.put('/:id', controller.update);
+router.post('/', loginRequired, controller.store);
+router.put('/:id', loginRequired, controller.update);
 router.get('/:id', controller.show);
-router.delete('/:id', controller.delete);
+router.delete('/:id', loginRequired, controller.delete);
 
 export default router;
