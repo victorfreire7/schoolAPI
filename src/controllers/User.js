@@ -25,7 +25,7 @@ class Controller {
             });
         } else {
           user.destroy();
-          res.status(200).json({
+          return res.status(200).json({
             success: ['user delete successfuly']
           });
         }
