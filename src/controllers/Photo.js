@@ -6,8 +6,8 @@ class Controller {
   async store(req, res){
     return upload(req, res, (e) => {
       if(e) {
-        return res.status(400).json({
-          errors: ['file incompatible']
+        return res.status(400).json({ // retorno um bad request
+          errors: ['file incompatible'] // verifico se há algum erro (um arquivo nao desejado, por exemplo)
         });
       }
 
