@@ -14,25 +14,28 @@ class Controller {
         });
       }
 
+      try {
+        const { originalname, filename } = req.file;
+        const { aluno_id } = req.body;
 
+        const aluno = await Aluno.findByPk(aluno_id);
+        if(!aluno){
+          return res.status(404).json({
+            errors: ['user not found']
+          });
+        } else {
+          const photo = await Photo.create({
+            originalname,
+            filename,
+            aluno_id
+          })
 
-      const { originalname, filename } = req.file;
-      const { aluno_id } = req.body;
-
-      const aluno = await Aluno.findByPk(aluno_id);
-      if(!aluno){
-        return res.status(400).json({ // retorno um bad request
-          errors: ['user not found'] // verifico se há algum erro (um arquivo nao desejado, por exemplo)
-        });
-      } else {
-        const photo = await Photo.create({
-          originalname,
-          filename,
-          aluno_id
-        })
-
-        return res.json(photo)
+          return res.json(photo)
+        }
+      } catch (e) {
+        return res.status(400).json(e.errors);
       }
+
     });
   }
 }
