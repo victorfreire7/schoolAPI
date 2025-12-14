@@ -1,4 +1,5 @@
 import express from 'express';
+import { resolve } from 'path';
 import homeRoute from './src/routes/home.js';
 import userRoute from './src/routes/user.js';
 import tokenRoute from './src/routes/token.js';
@@ -17,6 +18,7 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    this.app.use(express.static(resolve(__dirname, 'uploads')));
   }
 
   routes() {
