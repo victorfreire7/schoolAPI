@@ -5,6 +5,13 @@ const random = () => Math.floor(Math.random() * 10000 + 10000)
 
 //por este arquivo 'funcionar como um middleware', o arquivo 'file' pode ser acessado na proxima requisicao (neste caso, o controller)
 export default {
+  fileFilter: (req, file, cb) => {
+    if(file.mimetype != 'image/png' && file.mimetype != 'image/jpeg'){
+      return cb(new multer.MulterError(`${file.mimetype} incompatible`));
+    }
+
+    return cb(null, true);
+  },
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, resolve(__dirname, '..', '..', 'uploads'));
