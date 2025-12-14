@@ -8,7 +8,7 @@ class Controller {
       order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
       include: {
         model: Photo,
-        attributes: ['filename']
+        attributes: ['url', 'filename']
       }
     })
     .then((aluno) => {
@@ -40,7 +40,7 @@ class Controller {
         order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
         include: {
           model: Photo,
-          attributes: ['filename']
+          attributes: ['url', 'filename']
         }
       })
       .then((aluno) => {
