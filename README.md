@@ -1,8 +1,8 @@
 # schoolAPI
 
-![/alunos](img/1765690129638.jpg)
-![/tokens](img/jwt.png)
-![/photos](img/insomnia.png)
+![/alunos](/public/img/1765690129638.jpg)
+![/tokens](/public/img/jwt.png)
+![/photos](/public/img/insomnia.png)
 
 
   Este é o projeto prático de uma API Rest que realiza o cadastro de alunos dentro do banco de dados de uma escola. Utilizando JWT, BCRYPT.JS e DotEnv, a APIREST conta com a segurança necessário para consumo e armazenamento de dados.
